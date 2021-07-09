@@ -3,6 +3,8 @@ import axios from 'axios';
 // importing React Router imports (Route, Link & Switch)
 import { Route } from 'react-router-dom';
 
+import Alieze from './Alieze';
+
 
 
 
@@ -21,6 +23,9 @@ export default function App () {
       axios
         .get('http://localhost:5000/api/movies') // Study this endpoint with Postman
         .then(response => {
+          console.log(response.data)
+          //passing in movie list from response.data
+          setMovieList(response.data)
           // Study this response with a breakpoint or log statements
           // and set the response data as the 'movieList' slice of state
         })
@@ -45,6 +50,7 @@ export default function App () {
       {/* making a path to homepage that will display all the movies */}
       <Route exact path="/"> <MovieList movies={ movieList }/> </Route>
       <Route path="/movies/:id"><Movie movie={ movieList }/></Route>
+      <Route path="/me"><Alieze /></Route>
     </div>
     
   );
